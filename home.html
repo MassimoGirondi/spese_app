@@ -1,7 +1,18 @@
 <div class="scrollable" ng-controller="home">
-  <div class="scrollable-content section " >
+  <div class="scrollable-content section" >
+      <div ng-show="{{spese_presenti}}">
 
-    Sono presenti conti in sospeso per 
 
+      </div>
+
+      <div ng-show="{{spese_presenti}}" class="text-center">
+        <i class="fa fa-warning feature-icon text-primary"></i>
+        <h2>  Sono presenti conti in sospeso per {{totale}} €.</h2>
+      </div>
+
+      <div ng-show="{{!spese_presenti}}" class="text-center">
+        <i class="fa fa-warning feature-icon text-primary"></i>
+        <h2>  Complimenti! Non ci sono conti in sospeso.</h2>
+      </div>
   </div>
 </div>

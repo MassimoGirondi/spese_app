@@ -275,6 +275,21 @@ app.controller('tutte_spese', ['$scope','$window','$routeParams', function($scop
 
 app.controller('home', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
 
+  if($window.localStorage['spese'] && $window.localStorage['spese'].length>0)
+    {
+      $scope.spese_presenti=true;
+
+      var json="["+$window.localStorage['spese']+"]";
+      var spese=JSON.parse(json);
+
+      var tot=0;
+      for (var s in spese) {
+          tot+=spese[s]['importo'];
+          console.log(spese[s]['importo']);
+      }
+      $scope.totale=tot;
+    }
+
 
 }]);
 
