@@ -225,7 +225,7 @@ app.controller('dati', ['$scope','$window','$routeParams', function($scope,$wind
     if(confirm("Sicuro di voler eliminare tutti i dati?"))
       {
         $window.localStorage.clear();
-        $window.location = "#/home";
+        $window.location = "#/";
       }
   };
   $scope.spese=function()
