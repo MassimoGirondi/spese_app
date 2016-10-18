@@ -14,6 +14,11 @@
            <span >{{ item.name }}</span>
            <span class="importo pull-right" ng-class="{rednumber: item.importo<0, greennumber: item.importo>=0}">{{item.importo}}</i>
          </a>
+         <br/>
+
+         <button class="btn btn-primary btn-block" ng-click="spese()" ng-controller="dati">
+           Elimina tutte le spese
+         </button>
        </div>
      </div>
 

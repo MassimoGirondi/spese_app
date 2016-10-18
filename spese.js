@@ -136,7 +136,7 @@ app.controller('nuova_spesa', ['$scope','$window','$routeParams', function($scop
 
                   spese+=(angular.toJson({'importo': importo, 'pagante' : pagante, 'altri':altri}));
                 //  console.log(angular.toJson({'importo': importo, 'pagante' : pagante, 'altri':altri}));
-                  console.log(spese);
+                //  console.log(spese);
                   $window.localStorage['spese']=spese;
                   $window.location = "#/tutte_spese";
                 };
@@ -225,7 +225,7 @@ app.controller('dati', ['$scope','$window','$routeParams', function($scope,$wind
     if(confirm("Sicuro di voler eliminare tutti i dati?"))
       {
         $window.localStorage.clear();
-
+        $window.location = "#/home";
       }
   };
   $scope.spese=function()
@@ -233,7 +233,7 @@ app.controller('dati', ['$scope','$window','$routeParams', function($scope,$wind
     if(confirm("Sicuro di voler eliminare tutte le spese?"))
       {
           if($window.localStorage['spese'])  $window.localStorage['spese']="";
-
+          $window.location = "#/";
       }
   }
 
@@ -285,7 +285,7 @@ app.controller('home', ['$scope','$window','$routeParams', function($scope,$wind
       var tot=0;
       for (var s in spese) {
           tot+=spese[s]['importo'];
-          console.log(spese[s]['importo']);
+        //  console.log(spese[s]['importo']);
       }
       $scope.totale=tot;
     }
