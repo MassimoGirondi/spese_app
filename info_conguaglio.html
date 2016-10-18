@@ -1,0 +1,19 @@
+<div class="modal" ui-if="info_conguaglio" ui-shared-state="info_conguaglio">
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close"
+                ui-turn-off="info_conguaglio">&times;</button>
+        <h4 class="modal-title">Informazioni</h4>
+      </div>
+      <div class="modal-body">
+        <p>Una cifra positiva indica un credito, una cifra negativa indica un debito.
+        I creditori devono ricevere i soldi, i debitori devono dare i soldi.</p>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="info_conguaglio" class="btn btn-default">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

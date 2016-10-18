@@ -1,0 +1,42 @@
+<div ui-content-for="title">
+  <span>Conguaglio spese</span>
+</div>
+
+<div class="scrollable" ng-controller="conguaglio">
+
+ <div class="scrollable-content section">
+
+
+   <div ng-show="{{spese_presenti}}">
+    <div class="scrollable-content">
+       <div class="list-group">
+         <a ng-repeat="item in items" href="" class="list-group-item">
+           <span >{{ item.name }}</span>
+           <span class="importo pull-right" ng-class="{rednumber: item.importo<0, greennumber: item.importo>=0}">{{item.importo}}</i>
+         </a>
+       </div>
+     </div>
+
+   </div>
+
+
+      <div ng-show="{{!spese_presenti}}" class="text-center">
+        <i class="fa fa-warning feature-icon text-primary"></i>
+        <h2 class="home heading">Non sono presenti spese!</h2>
+        <h3>Devi inserirne almeno uno prima di fare il conguaglio!</h3>
+      </div>
+
+ </div>
+</div>
+
+<div ui-content-for="navbarAction">
+  <div class="btn-group pull-right" ui-turn-on="info_conguaglio">
+        <div class="btn sidebar-right-toggle ng-scope">
+          <i class="fa fa-question-circle" ></i> Info
+        </div>
+      </div>
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'info_conguaglio.html'"></div>
+</div>
