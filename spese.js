@@ -304,3 +304,18 @@ app.controller('MainController', ['$scope','$window',function($scope,$window) {
 var membri=[];
 
 function arrotonda(N){N=parseFloat(N);if(!isNaN(N))N=N.toFixed(2);else N='0.00';return N;}
+
+
+
+
+function hideAddressBar(){
+  if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+    document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+  setTimeout(window.scrollTo(1,1),0);
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",function(){hideAddressBar();});
+// if (window.cordova && StatusBar)
+// {
+//     StatusBar.backgroundColorByHexString('#f7f7f7');
+// }
