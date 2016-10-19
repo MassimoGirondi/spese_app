@@ -37,6 +37,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/conguaglio', {templateUrl: 'conguaglio.html', reloadOnSearch:false});
   $routeProvider.when('/dati', {templateUrl: 'dati.html', reloadOnSearch:false});
   $routeProvider.when('/tutte_spese', {templateUrl: 'tutte_spese.html', reloadOnSearch:false});
+  $routeProvider.when('/speso', {templateUrl: 'speso.html', reloadOnSearch:false});
 });
 
 app.controller('membri', ['$scope','$window','$location', function($scope,$window,$location) {
@@ -290,6 +291,53 @@ app.controller('home', ['$scope','$window','$routeParams', function($scope,$wind
       $scope.totale=tot;
     }
 
+
+}]);
+
+
+app.controller('speso', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
+
+
+
+  if($window.localStorage['spese'])
+    {
+      $scope.spese_presenti=true;
+      var json="["+$window.localStorage['spese']+"]";
+      //console.log(json);
+      var spese=JSON.parse(json);
+      //console.log(spese);
+      var importi=[];
+      for (var i = 0; i < membri.length; i++) {
+        importi[i]=0.0;
+      }
+
+      for (var s in spese) {
+          var n=spese[s]['altri'].length;
+          var importo=spese[s]['importo'];
+          var pagante=spese[s]['pagante'];
+
+          //importi[pagante]+=importo;
+          importo/=1.0*n;
+
+           for (var p in spese[s]['altri']) {
+               importi[p]+=(importo);
+
+          }
+      }
+
+
+      var items=[];
+      for (var i = 0; i < membri.length; i++) {
+        //console.log(membri[i]+" "+importi[i]);
+        items.push({'name': membri[i], 'importo': arrotonda(importi[i])});
+
+      }
+
+
+      $scope.items=items;
+    }
+  else
+    $scope.spese_presenti=false;
 
 }]);
 
