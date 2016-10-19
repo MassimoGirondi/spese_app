@@ -302,7 +302,7 @@ app.controller('speso', ['$scope','$window','$routeParams', function($scope,$win
 
   if($window.localStorage['spese'])
     {
-      $scope.spese_presenti=true;
+      $scope.membri_presenti=true;
       var json="["+$window.localStorage['spese']+"]";
       //console.log(json);
       var spese=JSON.parse(json);
@@ -338,15 +338,16 @@ app.controller('speso', ['$scope','$window','$routeParams', function($scope,$win
       $scope.items=items;
     }
   else
-    $scope.spese_presenti=false;
+    $scope.membri_presenti=false;
 
 }]);
 
 
 
-app.controller('speso', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
+app.controller('correggi', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
   if(membri.length!=0)
   {
+    $scope.membri_presenti=true;
     var elenco=[];
     for (var i = 0; i < membri.length; i++) {
        elenco.push({name : membri[i],id : i});
