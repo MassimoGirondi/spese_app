@@ -38,6 +38,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/dati', {templateUrl: 'dati.html', reloadOnSearch:false});
   $routeProvider.when('/tutte_spese', {templateUrl: 'tutte_spese.html', reloadOnSearch:false});
   $routeProvider.when('/speso', {templateUrl: 'speso.html', reloadOnSearch:false});
+  $routeProvider.when('/correggi', {templateUrl: 'correggi.html', reloadOnSearch:false});
 });
 
 app.controller('membri', ['$scope','$window','$location', function($scope,$window,$location) {
@@ -341,6 +342,19 @@ app.controller('speso', ['$scope','$window','$routeParams', function($scope,$win
 
 }]);
 
+
+
+app.controller('speso', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
+  if(membri.length!=0)
+  {
+    var elenco=[];
+    for (var i = 0; i < membri.length; i++) {
+       elenco.push({name : membri[i],id : i});
+    }
+    $scope.scrollItems=elenco;
+  }
+
+}]);
 
 
 
