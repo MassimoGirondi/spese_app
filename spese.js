@@ -142,7 +142,9 @@ app.controller('nuova_spesa', ['$scope','$window','$routeParams', function($scop
 
       if(id<0)//inserimento nuovo
       {
-            $scope.btn="Aggiungi spesa";
+          $scope.btn="Aggiungi spesa";
+
+
             $scope.nuova=function(spesa)
                 {
                   var importo=spesa.importo;
@@ -164,6 +166,7 @@ app.controller('nuova_spesa', ['$scope','$window','$routeParams', function($scop
       }
     else {//modifica vecchio
         $scope.btn="Modifica spesa";
+        $scope.el_btn=true;
         var json="["+$window.localStorage['spese']+"]";
         //console.log(json);
         var spese=JSON.parse(json);
@@ -186,9 +189,8 @@ app.controller('nuova_spesa', ['$scope','$window','$routeParams', function($scop
                 if(confirm("Vuoi davvero eliminare la spesa"+"?"))
                 {
                   spese.splice(id,1);
-
-
-                $window.localStorage['spese']=angular.toJson(spese);
+                  var str=angular.toJson(spese);
+                  $window.localStorage['spese']=str.substring(1, str.length-1);
                 //$window.location = "#/edit_spesa";
                 $window.location = "#/tutte_spese";
                 }
