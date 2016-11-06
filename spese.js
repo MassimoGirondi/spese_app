@@ -61,12 +61,13 @@ app.controller('membri', ['$scope','$window','$location', function($scope,$windo
 app.controller('edit_membro', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
 
   var id=$routeParams.id;
-
   if(id>=0 && id< membri.length)
   {
     $scope.nome=membri[id];
     $scope.mod_btn="Modifica";
-    if(!$window.localStorage['spese'])
+    if($window.localStorage['spese'])
+      $scope.el_btn2=true;
+    else
       $scope.el_btn=true;
 
   }
@@ -84,6 +85,16 @@ app.controller('edit_membro', ['$scope','$window','$routeParams', function($scop
     {
       membri.splice(id,1);
       $window.localStorage['membri']=membri.join('$');
+      if($window.localStorage['correzioni'])
+      {
+
+         var correzioni=JSON.parse($window.localStorage['correzioni']);
+         correzioni.splice(id,1);
+         console.log(correzioni);
+         $window.localStorage['correzioni']=angular.toJson(correzioni);
+
+      }
+
     }
 
     $window.location = "#/membri";
@@ -102,6 +113,14 @@ app.controller('edit_membro', ['$scope','$window','$routeParams', function($scop
           //alert($scope.mod_btn+" "+document.getElementById("nome").value);
         membri.push(document.getElementById("nome").value);
         $window.localStorage['membri']=membri.join('$');
+        if($window.localStorage['correzioni'])
+        {
+
+           var correzioni=JSON.parse($window.localStorage['correzioni']);
+           correzioni.push(0);
+           $window.localStorage['correzioni']=angular.toJson(correzioni);
+
+        }
       }
       $window.location = "#/membri";
   };
@@ -186,7 +205,8 @@ app.controller('conguaglio', ['$scope','$window','$routeParams', function($scope
       var json="["+$window.localStorage['spese']+"]";
       //console.log(json);
       var spese=JSON.parse(json);
-      //console.log(spese);
+
+
       var importi=[];
       for (var i = 0; i < membri.length; i++) {
         importi[i]=0.0;
@@ -204,6 +224,24 @@ app.controller('conguaglio', ['$scope','$window','$routeParams', function($scope
                importi[p]-=(importo);
 
           }
+      }
+
+      if($window.localStorage['correzioni'])
+      {
+              var correzioni=JSON.parse($window.localStorage['correzioni']);
+              for(var i=0,l=correzioni.length;i<l;i++)//per ogni importo di correzione
+                if(correzioni[i]!=0)
+                  for(var j=0;j<l;j++)//per ogni membro
+                  {
+                    if(j!=i)
+                      {
+                        importi[j]+=correzioni[i]/(l-1);
+                      }
+                    else
+                    {
+                      importi[j]-=correzioni[i];
+                    }
+                  }
       }
 
 
@@ -325,6 +363,23 @@ app.controller('speso', ['$scope','$window','$routeParams', function($scope,$win
 
           }
       }
+      if($window.localStorage['correzioni'])
+      {
+              var correzioni=JSON.parse($window.localStorage['correzioni']);
+              for(var i=0,l=correzioni.length;i<l;i++)//per ogni importo di correzione
+                if(correzioni[i]!=0)
+                  for(var j=0;j<l;j++)//per ogni membro
+                  {
+                    if(j!=i)
+                      {
+                        importi[j]-=correzioni[i]/(l-1);
+                      }
+                    else
+                    {
+                      importi[j]+=correzioni[i];
+                    }
+                  }
+      }
 
 
       var items=[];
@@ -348,16 +403,51 @@ app.controller('correggi', ['$scope','$window','$routeParams', function($scope,$
   if(membri.length!=0)
   {
     $scope.membri_presenti=true;
+    var correzioni=[];
+    if($window.localStorage['correzioni'])
+      correzioni=JSON.parse($window.localStorage['correzioni']);
     var elenco=[];
     for (var i = 0; i < membri.length; i++) {
-       elenco.push({name : membri[i],id : i});
+       var imp=(correzioni[i] ? arrotonda(correzioni[i]) : arrotonda(0.00));
+       elenco.push({name : membri[i],id : i, importo : imp});
     }
-    $scope.scrollItems=elenco;
+    $scope.items=elenco;
+
+    $scope.salva=function(importi)
+    {
+        var correzioni=new Array();
+        for (var i = 0; i < importi.length; i++)
+        {
+          var importo=importi[i]
+          correzioni[importo['id']]=parseFloat(importo['importo']);
+        }
+        console.log(correzioni);
+        $window.localStorage['correzioni']=angular.toJson(correzioni);
+
+    };
+
+    $scope.azzera=function(importi)
+    {
+      for (var i = 0; i < importi.length; i++)
+      {
+        importi[i]['importo']=arrotonda(0);
+      }
+    }
   }
 
-}]);
+  }]);
 
+app.controller('correggi_item', ['$scope','$window','$routeParams', function($scope,$window,$routeParams) {
+  $scope.piu=function()
+    {
+      $scope.item.importo=arrotonda(parseFloat($scope.item.importo)+0.50);
+    };
 
+  $scope.meno=function()
+    {
+      $scope.item.importo=arrotonda(max(parseFloat($scope.item.importo)-0.50,0));
+    };
+  }]);
 
 app.controller('MainController', ['$scope','$window',function($scope,$window) {
   if($window.localStorage['membri'])
@@ -367,7 +457,7 @@ app.controller('MainController', ['$scope','$window',function($scope,$window) {
 var membri=[];
 
 function arrotonda(N){N=parseFloat(N);if(!isNaN(N))N=N.toFixed(2);else N='0.00';return N;}
-
+function max(a,b){return a>b ? a : b; }
 
 
 

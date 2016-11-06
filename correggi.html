@@ -7,28 +7,39 @@
  <div class="scrollable-content section">
 
 
-   <div ng-show="{{spese_presenti}}">
+   <form role="form" ng-submit='salva(items)'>
+   <div ng-show="{{membri_presenti}}">
     <div class="scrollable-content">
        <div class="list-group">
-         <a ng-repeat="item in items" class="list-group-item">
+         <span ng-repeat="item in items" class="list-group-item" ng-controller="correggi_item">
            <span >{{ item.name }}</span>
-           <span class="importo pull-right" >{{item.importo}}</i>
-         </a>
+           <span class="pull-right">
+             <a ng-click="meno()"> <i class="fa fa-minus"></i></a>
+             <span class="importo" >{{item.importo}}</span>
+             <a ng-click="piu()"><i class="fa fa-plus" ng-click="piu"></i></a>
+           </span>
+         </span>
        </div>
+            <button class="btn btn-primary btn-block" type="submit">
+              Salva correzioni
+            </button>
+      </form>
      </div>
    </div>
 
 
-      <div ng-show="{{!spese_presenti}}" class="text-center">
+      <div ng-show="{{!membri_presenti}}" class="text-center">
         <i class="fa fa-warning feature-icon text-primary"></i>
-        <h2 class="home heading">Non sono presenti spese!</h2>
-        <h3>Devi inserirne almeno una!</h3>
+        <h2 class="home heading">Non sono presenti membri!</h2>
+        <h3>Devi inserirne almeno uno!</h3>
       </div>
 
  </div>
-</div>
 
 <div ui-content-for="navbarAction">
+    <a class="btn" ng-click="azzera(items)" >Azzera</a>
+
+</div>
 </div>
 
 <div ui-content-for="modals">
