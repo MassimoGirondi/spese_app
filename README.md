@@ -14,6 +14,8 @@ Dopo aver inserito i nomi delle persone tra le quali dividere le spese, sarà su
 È anche possibile correggere gli importi, specificando quanto deve pagare in più rispetto alle altre ogni persona.
 
 
+
+Questo è un wrapper attorno alla mia web-app, realizzata con Mobile Angular JS, disponibile qui https://github.com/maxgiro96/spese
 Licenza
 ----
 Questo progetto è rilasciato sotto licenza GPL v3.
