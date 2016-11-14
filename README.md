@@ -7,7 +7,7 @@ Non ti è mai capitato di trovarti a una festa dove ognuno ha portato qualcosa e
 
 Abiti in un appartamento condiviso con altri e dovete decidere quanto paga ognuno per ogni spesa?
 
-Con questa semplice web-app potrai farlo molto semplicemente.
+Con questa semplice web-app potrai farlo molto semplicemente, dimenticandoti calcolatrice e penna.
 
 Dopo aver inserito i nomi delle persone tra le quali dividere le spese, sarà sufficiente inserire l'imporo speso da ognuno, recarsi poi nella pagina del conguaglio e riscuotere i propri soldi.
 
