@@ -1,0 +1,19 @@
+<div class="modal" ui-if="info_eliminazione" ui-shared-state="info_eliminazione">
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close"
+                ui-turn-off="info_eliminazione">&times;</button>
+        <h4 class="modal-title">Perchè non posso eliminare o aggiungere un membro?</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+        &Egrave; necessario elimare prima tutte le spese, poi sarà possibile effettuare la modifica dei membri.</p>
+      </div>
+      <div class="modal-footer">
+        <button ui-turn-off="info_eliminazione" class="btn btn-default">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
