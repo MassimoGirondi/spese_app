@@ -1,3 +1,5 @@
+/*Copyright (C) 2016  Massimo Girondi*/
+
 /* eslint no-alert: 0 */
 
 'use strict';
