@@ -1,5 +1,4 @@
 #Gestore spese
-----
 Copyright (C) 2016 Massimo Girondi
 
 
