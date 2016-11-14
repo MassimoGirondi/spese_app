@@ -1,0 +1,28 @@
+<div ui-content-for="title">
+  <span>Gestione membri</span>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+     <div class="scrollable-content"  ng-controller="membri">
+       <div class="list-group">
+         <a ng-repeat="item in scrollItems" href="" class="list-group-item" ng-href="#/edit_membro/{{item.id}}">
+           {{ item.name }} <i class="fa fa-chevron pull-right" ></i>
+         </a>
+       </div>
+     </div>
+ </div>
+</div>
+
+    <div ui-content-for="navbarAction">
+      <a class="btn" ng-href="#/edit_membro/-1" ng-show="{{!spese_presenti}}">Aggiungi</a>
+      <a class="btn" ui-turn-on="info_eliminazione" ng-show="{{spese_presenti}}">Aggiungi</a>
+      <!--   <div class="btn-group pull-right" ui-turn-on="info_eliminazione" ng-show="{{!spese_presenti}}">
+         <div class="btn sidebar-right-toggle ng-scope">
+              <i class="fa fa-question-circle" ></i> Info
+            </div>-->
+          </div>
+    </div>
+    <div ui-content-for="modals">
+      <div ng-include="'info_eliminazione.html'"></div>
+    </div>

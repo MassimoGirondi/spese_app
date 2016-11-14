@@ -1,0 +1,45 @@
+<div ui-content-for="title">
+  <span>{{mod_btn}} {{nome}}</span>
+</div>
+
+<div class="scrollable">
+ <div class="scrollable-content section">
+
+  <form role="form"  ng-controller="edit_membro">
+    <fieldset>
+
+        <div class="form-group has-success has-feedback">
+          <label>Nome</label>
+          <input type="text"
+
+                 class="form-control"
+                 placeholder="Inserisci il nome"
+                 required
+                 pattern="[^$]*"
+                 ng-value="nome"
+                 id="nome"
+                 autofocus
+                 >
+        </div>
+
+    <button class="btn btn-primary btn-block" ng-click="modifica()">
+      {{mod_btn}}
+    </button>
+    <button class="btn btn-primary btn-block" ng-show="{{el_btn}}" ng-click="elimina()">
+      Elimina
+    </button>
+    <button class="btn btn-primary btn-block" ng-show="{{el_btn2}}" ui-turn-on="info_eliminazione">
+      Elimina
+    </button>
+
+
+  </form>
+ </div>
+</div>
+
+<div ui-content-for="navbarAction">
+</div>
+
+<div ui-content-for="modals">
+  <div ng-include="'info_eliminazione.html'"></div>
+</div>

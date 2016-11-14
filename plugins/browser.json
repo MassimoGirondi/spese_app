@@ -1,0 +1,21 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "net.girondi.spese"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "net.girondi.spese"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "net.girondi.spese"
+        }
+    },
+    "dependent_plugins": {}
+}
