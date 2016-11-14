@@ -1,5 +1,4 @@
 #Gestore spese
-
 Copyright (C) 2016 Massimo Girondi
 
 
@@ -15,7 +14,7 @@ Dopo aver inserito i nomi delle persone tra le quali dividere le spese, sarà su
 
 
 
-Questo è un wrapper attorno alla mia web-app, realizzata con Mobile Angular JS, disponibile qui https://github.com/maxgiro96/spese
+Questo è un wrapper attorno alla mia web-app, realizzata con Mobile Angular JS, disponibile qui: https://github.com/maxgiro96/spese
 Licenza
 ----
 Questo progetto è rilasciato sotto licenza GPL v3.
